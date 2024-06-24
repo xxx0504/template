@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosError, AxiosResponse } from 'axios'
+// import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 // import { refreshToken } from '@/helper/login'
 
 const HttpClient = axios.create({
@@ -58,48 +59,46 @@ const responseInterceptors = async (res: AxiosResponse<any, any>) => {
   return res
 }
 
-let hasShowExpiredModal = false
+// let hasShowExpiredModal = false
 
-const responseInterceptorsError = async (err: AxiosError) => {
-  if (err.response?.status === 403) {
-    // 没有权限
-    if (!hasShowExpiredModal) {
-      console.log({
-        title: '提示',
-        content: '您没有权限',
-        onOk() {
-          hasShowExpiredModal = false
-        },
-      })
-      return Promise.reject(err)
-    }
-  } else if (err.response?.status === 401) {
-    console.log('登录过期，请重新登录')
-    // token 过期
-    if (window.location.pathname === '/chat') {
-      window.close()
-    }
-    // 清除location记录
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', window.location.href)
-    }
-    window.location.href =
-      import.meta.env.VITE_SSO_LOGIN_URL +
-      '/auth/merchant?r=' +
-      window.location.origin
+// const responseInterceptorsError = async (err: AxiosError) => {
+//   if (err.response?.status === 403) {
+//     // 没有权限
+//     if (!hasShowExpiredModal) {
+//       console.log({
+//         title: '提示',
+//         content: '您没有权限',
+//         onOk() {
+//           hasShowExpiredModal = false
+//         },
+//       })
+//       return Promise.reject(err)
+//     }
+//   } else if (err.response?.status === 401) {
+//     console.log('登录过期，请重新登录')
+//     // token 过期
+//     if (window.location.pathname === '/chat') {
+//       window.close()
+//     }
+//     // 清除location记录
+//     if (window.history && window.history.replaceState) {
+//       window.history.replaceState(null, '', window.location.href)
+//     }
+//     window.location.href =
+//       import.meta.env.VITE_SSO_LOGIN_URL
 
-    return Promise.reject(err)
-  }
-  console.log('系统错误')
-  return Promise.reject(err)
-}
+//     return Promise.reject(err)
+//   }
+//   console.log('系统错误')
+//   return Promise.reject(err)
+// }
 
 // HttpClient.interceptors.response
 // let isRefreshing = false
 // 响应拦截
 HttpClient.interceptors.response.use(
-  responseInterceptors,
-  responseInterceptorsError
+  responseInterceptors
+  // responseInterceptorsError
 )
 
 export type TStatusCode = '200' | '401'

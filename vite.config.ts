@@ -40,4 +40,33 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    port: 3001,
+    open: true,
+    // https: false,
+    proxy: {
+      '/app': {
+        target: 'https://api-dev.awaitz.com/app',
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path: string) => path.replace(/^\/app/, ''),
+      },
+      '/upload': {
+        target: 'http://web-dev.awaitz.com/third',
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path: string) =>
+          path.replace(/^\/upload/, '/api/upload-file'),
+      },
+      '/donwload': {
+        target: 'https://shanghai-photo-test.oss-cn-shanghai.aliyuncs.com',
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path: string) => path.replace(/^\/donwload/, ''),
+      },
+    },
+  },
+  preview: {
+    port: 3001,
+  },
 })
