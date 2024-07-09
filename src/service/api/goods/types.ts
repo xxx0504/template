@@ -39,12 +39,5 @@ export interface IListRes<T> {
 }
 
 export interface IGoodsApi {
-  queryGoodsList: (params: {
-    contentCode: '958607551967252482'
-    pageMode: 8
-    pageNum: 2
-    pageSize: 10
-    sortType: 'ASSIGN_SORT'
-    topicCode: '866209892063059968'
-  }) => Promise<ResType<IListRes<null>>>
+  queryGoodsList: (params) => Promise<ResType<IListRes<null>>>
 }

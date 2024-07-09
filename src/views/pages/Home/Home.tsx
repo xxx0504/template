@@ -5,14 +5,7 @@ export default defineComponent({
   setup() {
     const getList = async () => {
       try {
-        const data = await goodsApi.queryGoodsList({
-          contentCode: '958607551967252482',
-          pageMode: 8,
-          pageNum: 2,
-          pageSize: 10,
-          sortType: 'ASSIGN_SORT',
-          topicCode: '866209892063059968',
-        })
+        const data = await goodsApi.queryGoodsList({})
         if (data.code === '200') {
           console.log(data.data)
         }
