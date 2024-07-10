@@ -1,5 +1,5 @@
 import { goodsApi } from '@/service/api/goods/goods'
-
+import './index.less'
 export default defineComponent({
   name: 'Home-view',
   setup() {
@@ -18,7 +18,11 @@ export default defineComponent({
     })
     return () => (
       <>
-        <div>123</div>
+        <div class="home-body">
+          <div class="text-1">文本001</div>
+          <div class="text-2">文本002</div>
+          <div class="text-3">文本003</div>
+        </div>
       </>
     )
   },
