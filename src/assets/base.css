@@ -20,6 +20,10 @@
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
+/* 商品 */
+:root {
+  --goods-text: #340058;
+}
 
 /* semantic color variables for this project */
 :root {
