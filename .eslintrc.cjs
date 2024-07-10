@@ -10,17 +10,28 @@ module.exports = {
     'prettier',
     '@vue/eslint-config-prettier/skip-formatting',
   ],
+  overrides: [],
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 2020,
     parser: '@typescript-eslint/parser',
+    ecmaVersion: 'latest',
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   plugins: ['vue', '@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/no-mutating-props': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'vue/multi-word-component-names': 'off',
+    'vue/require-valid-default-prop': 'off', // ts版本大于4.7可关闭
+    'vue/require-explicit-emits': 'off',
+    '@typescript-eslint/no-empty-interface': 0, // 允许空的接口
+    '@typescript-eslint/no-this-alias': [
+      'error',
+      {
+        allowedNames: ['that'], // this可用的局部变量名称
+      },
+    ],
+    'no-debugger': 'warn',
   },
 }
