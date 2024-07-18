@@ -1,14 +1,17 @@
-/* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
-
 module.exports = {
-  root: true,
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
   extends: [
-    'plugin:vue/vue3-essential',
     'eslint:recommended',
-    '@vue/eslint-config-typescript',
-    'prettier',
-    '@vue/eslint-config-prettier/skip-formatting',
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'eslint-config-prettier',
+    'plugin:vue/vue3-essential',
+    './.eslintrc-auto-import.json',
   ],
   overrides: [],
   parser: 'vue-eslint-parser',
@@ -23,6 +26,7 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint', 'prettier'],
   rules: {
     'vue/multi-word-component-names': 'off',
+    'vue/no-side-effects-in-computed-properties': 'off',
     'vue/require-valid-default-prop': 'off', // ts版本大于4.7可关闭
     'vue/require-explicit-emits': 'off',
     '@typescript-eslint/no-empty-interface': 0, // 允许空的接口
@@ -33,5 +37,12 @@ module.exports = {
       },
     ],
     'no-debugger': 'warn',
+    // 'no-console': [
+    //   // 提交时不允许log
+    //   'warn',
+    //   {
+    //     allow: ['warn', 'error'],
+    //   },
+    // ],
   },
 }
