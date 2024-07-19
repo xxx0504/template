@@ -10,7 +10,7 @@
     "build:dev": "pnpm lint && vite build --mode dev",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
+    "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\""
   },
