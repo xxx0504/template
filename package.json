@@ -15,7 +15,6 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,html,css,scss,json,md}\""
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "axios": "^1.7.2",
     "dayjs": "^1.11.11",
@@ -30,8 +29,13 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.14.5",
+    "@types/file-saver": "^2.0.7",
+    "@types/lodash": "^4.17.7",
+    "@types/mockjs": "^1.0.10",
+    "@types/node": "^20.14.10",
+    "@types/nprogress": "^0.2.3",
     "@types/vue": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vue/eslint-config-prettier": "^9.0.0",
