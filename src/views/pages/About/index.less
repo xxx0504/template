@@ -1,9 +1,36 @@
-.menus{
+.menus {
   position: fixed;
   left: 0;
+  background-color: #fff;
+  .hamburger {
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  .hamburger__line {
+    background: rgb(203 213 225);
+    margin: 0.25rem 0;
+    height: 0.25rem;
+    width: 2rem;
+  }
+  .hamburger__line {
+    transition: all 0.3s ease-out;
+  }
+  .hamburger:hover .hamburger__line:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .hamburger:hover .hamburger__line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger:hover .hamburger__line:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+  }
 }
-.aboutBody{
-  div{
+.aboutBody {
+  div {
     height: 500px;
   }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import axios, { AxiosError, AxiosResponse } from 'axios'
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios';
 // import { refreshToken } from '@/helper/login'
 
 const HttpClient = axios.create({
@@ -12,7 +12,7 @@ const HttpClient = axios.create({
     },
     Source: 'MERCHANT',
   },
-})
+});
 const UploadClient = axios.create({
   baseURL: import.meta.env.VITE_BASE_UPLOAD_URL,
   timeout: 100000,
@@ -22,7 +22,7 @@ const UploadClient = axios.create({
     },
     Source: 'MERCHANT',
   },
-})
+});
 const DownloadTextClient = axios.create({
   timeout: 30000,
   headers: {
@@ -31,7 +31,7 @@ const DownloadTextClient = axios.create({
     },
     Source: 'MERCHANT',
   },
-})
+});
 const DownloadFileClient = axios.create({
   baseURL: import.meta.env.VITE_BASE_DOWNLOAD_URL,
   timeout: 30000,
@@ -41,23 +41,23 @@ const DownloadFileClient = axios.create({
     },
     Source: 'MERCHANT',
   },
-})
+});
 /**
  * 业务代码错误code,对应业务单独处理
  */
 
-const resCode: Set<string> = new Set(['120104'])
+const resCode: Set<string> = new Set(['120104']);
 
 const responseInterceptors = async (res: AxiosResponse<any, any>) => {
   if (res.data.code !== '200') {
     if (resCode.has(res.data.code)) {
-      return Promise.resolve(res)
+      return Promise.resolve(res);
     }
-    console.log(res.data.msg || '接口错误')
-    return Promise.reject(res)
+    console.log(res.data.msg || '接口错误');
+    return Promise.reject(res);
   }
-  return res
-}
+  return res;
+};
 
 // let hasShowExpiredModal = false
 
@@ -99,34 +99,34 @@ const responseInterceptors = async (res: AxiosResponse<any, any>) => {
 HttpClient.interceptors.response.use(
   responseInterceptors
   // responseInterceptorsError
-)
+);
 
-export type TStatusCode = '200' | '401'
+export type TStatusCode = '200' | '401';
 
 export interface ResType<T = null> {
-  code: TStatusCode
-  data: T
-  msg: string
-  success?: string
+  code: TStatusCode;
+  data: T;
+  msg: string;
+  success?: string;
 }
 
 interface Http {
-  get<T>(url: string, params?: unknown): Promise<ResType<T>>
-  post<T>(url: string, params?: unknown): Promise<ResType<T>>
-  delete<T>(url: string, params?: unknown): Promise<ResType<T>>
-  upload<T>(url: string, params: unknown): Promise<ResType<T>>
-  download(url: string): void
-  downloadText(url: string): Promise<string>
-  downloadFile(url: string): Promise<File>
+  get<T>(url: string, params?: unknown): Promise<ResType<T>>;
+  post<T>(url: string, params?: unknown): Promise<ResType<T>>;
+  delete<T>(url: string, params?: unknown): Promise<ResType<T>>;
+  upload<T>(url: string, params: unknown): Promise<ResType<T>>;
+  download(url: string): void;
+  downloadText(url: string): Promise<string>;
+  downloadFile(url: string): Promise<File>;
 }
 
 const http: Http = {
   async get(url, params?) {
     try {
-      const res = await HttpClient.get(url, { params }).catch((err) => {
-        throw err.data
-      })
-      return res.data
+      const res = await HttpClient.get(url, { params }).catch(err => {
+        throw err.data;
+      });
+      return res.data;
     } catch (err) {
       // throw err
     }
@@ -134,11 +134,11 @@ const http: Http = {
   async post(url, params?) {
     try {
       const res = await HttpClient.post(url, JSON.stringify(params)).catch(
-        (err) => {
-          throw err.data
+        err => {
+          throw err.data;
         }
-      )
-      return res.data
+      );
+      return res.data;
     } catch (err) {
       // throw err
     }
@@ -146,10 +146,10 @@ const http: Http = {
 
   async delete(url, params?) {
     try {
-      const res = await HttpClient.delete(url, { params }).catch((err) => {
-        throw err.data
-      })
-      return res.data
+      const res = await HttpClient.delete(url, { params }).catch(err => {
+        throw err.data;
+      });
+      return res.data;
     } catch (err) {
       // throw err
     }
@@ -158,10 +158,10 @@ const http: Http = {
     try {
       const res = await UploadClient.post(url, file, {
         headers: { 'Content-Type': 'multipart/form-data' },
-      }).catch((err) => {
-        throw err.data
-      })
-      return res.data
+      }).catch(err => {
+        throw err.data;
+      });
+      return res.data;
     } catch (err) {
       // throw err
     }
@@ -169,34 +169,34 @@ const http: Http = {
 
   download(url) {
     if (!url) {
-      return console.log('文件链接不存在')
+      return console.log('文件链接不存在');
     }
-    const link = document.createElement('a')
-    link.href = url
-    const urlSplit = url.split('/')
-    link.download = urlSplit[urlSplit.length - 1]
-    link.target = '_blank'
-    link.style.display = 'none'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    const link = document.createElement('a');
+    link.href = url;
+    const urlSplit = url.split('/');
+    link.download = urlSplit[urlSplit.length - 1];
+    link.target = '_blank';
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   },
   downloadText: async function (urlUrl: string): Promise<string> {
     try {
-      const { data } = await DownloadTextClient.get(urlUrl)
-      return Promise.resolve(data)
+      const { data } = await DownloadTextClient.get(urlUrl);
+      return Promise.resolve(data);
     } catch (error) {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
   },
   downloadFile: async function (urlUrl: string): Promise<File> {
     try {
-      const { data } = await DownloadFileClient.get(urlUrl)
-      return Promise.resolve(data)
+      const { data } = await DownloadFileClient.get(urlUrl);
+      return Promise.resolve(data);
     } catch (error) {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
   },
-}
+};
 
-export default http
+export default http;

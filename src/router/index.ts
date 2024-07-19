@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
@@ -16,9 +16,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/pages/About/About'),
   },
-]
+];
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), //可传参数，配置base路径，例如'/app'
   routes,
-})
-export default router
+});
+export default router;

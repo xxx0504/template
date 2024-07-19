@@ -1,12 +1,9 @@
 module.exports = {
-  printWith: 1000,
-  tabWith: 2,
-  useTabs: false,
+  semi: true,
   singleQuote: true,
-  semi: false,
-  arrowParens: 'always',
-  endOfLine: 'auto',
+  printWidth: 80,
+  tabWidth: 2,
   trailingComma: 'es5',
-  vueIndentScriptAndStyle: true,
-  htmlWhitespaceSensitivity: 'strict',
+  bracketSpacing: true,
+  arrowParens: 'avoid',
 }

@@ -1,21 +1,21 @@
-import { goodsApi } from '@/service/api/goods/goods'
-import './index.less'
+import { goodsApi } from '@/service/api/goods/goods';
+import './index.less';
 export default defineComponent({
   name: 'Home-view',
   setup() {
     const getList = async () => {
       try {
-        const data = await goodsApi.queryGoodsList({})
+        const data = await goodsApi.queryGoodsList({});
         if (data.code === '200') {
-          console.log(data.data)
+          console.log(data.data);
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
     onMounted(async () => {
-      await getList()
-    })
+      await getList();
+    });
     return () => (
       <>
         <div class="home-body">
@@ -24,6 +24,6 @@ export default defineComponent({
           <div class="text-3">文本003</div>
         </div>
       </>
-    )
+    );
   },
-})
+});
