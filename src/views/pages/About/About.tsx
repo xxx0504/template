@@ -1,9 +1,13 @@
 import data from '.';
 import './index.less';
+import NProgress from 'nprogress';
 export default defineComponent({
   name: 'AboutView',
   setup() {
     const { lists, getRandomColor } = data();
+    onMounted(() => {
+      NProgress.start(); // 开始显示进度条
+    });
     return () => (
       <>
         <div class="menus">
