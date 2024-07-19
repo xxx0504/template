@@ -1,7 +1,7 @@
 import data from '.';
 import './index.less';
 export default defineComponent({
-  name: 'About-view',
+  name: 'AboutView',
   setup() {
     const { lists, getRandomColor } = data();
     return () => (
